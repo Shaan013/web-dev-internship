@@ -1,30 +1,36 @@
-// Create a JavaScript program that takes​ two numbers and an operator (+, -, *, /)​ from the user and displays the result.
-// Simple Calculator using prompt()
+const readline = require('readline');
 
-let num1 = parseFloat(prompt("Enter the first number:"));
-let operator = prompt("Enter an operator (+, -, *, /):");
-let num2 = parseFloat(prompt("Enter the second number:"));
-let result;
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
-switch (operator) {
-  case '+':
-    result = num1 + num2;
-    break;
-  case '-':
-    result = num1 - num2;
-    break;
-  case '*':
-    result = num1 * num2;
-    break;
-  case '/':
-    if (num2 !== 0) {
-      result = num1 / num2;
-    } else {
-      result = "Cannot divide by zero!";
-    }
-    break;
-  default:
-    result = "Invalid operator!";
-}
+rl.question("Enter first number: ", (num1) => {
+  rl.question("Enter second number: ", (num2) => {
+    rl.question("Enter operator (+, -, *, /): ", (operator) => {
+      const a = parseFloat(num1);
+      const b = parseFloat(num2);
+      let result;
 
-alert("Result: " + result);
+      switch (operator) {
+        case '+':
+          result = a + b;
+          break;
+        case '-':
+          result = a - b;
+          break;
+        case '*':
+          result = a * b;
+          break;
+        case '/':
+          result = b !== 0 ? a / b : "Cannot divide by zero";
+          break;
+        default:
+          result = "Invalid operator";
+      }
+
+      console.log(`Result: ${result}`);
+      rl.close();
+    });
+  });
+});

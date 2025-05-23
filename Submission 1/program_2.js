@@ -1,18 +1,24 @@
-//​ Write a JavaScript program that takes a person’s​ name and age using prompt() and displays a​  greeting with a message based on their age. ​
-// Greeting based on name and age using prompt()
+const readline = require('readline');
+ 
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
-let name = prompt("Enter your name:");
-let age = parseInt(prompt("Enter your age:"));
-let message;
+rl.question("Enter your name: ", (name) => {
+  rl.question("Enter your age: ", (ageInput) => {
+    const age = parseInt(ageInput);
+    let message;
 
-if (age < 13) {
-  message = "You're a child. Enjoy your time!";
-} else if (age < 20) {
-  message = "You're a teenager. Explore and learn!";
-} else if (age < 60) {
-  message = "You're an adult. Keep growing!";
-} else {
-  message = "You're a senior citizen. Stay wise and healthy!";
-}
+    if (age < 18) {
+      message = "You are a minor.";
+    } else if (age < 60) {
+      message = "You are an adult.";
+    } else {
+      message = "You are a senior citizen.";
+    }
 
-alert(`Hello ${name}! ${message}`);
+    console.log(`Hello, ${name}! ${message}`);
+    rl.close();
+  });
+});
